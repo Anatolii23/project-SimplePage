@@ -26,13 +26,11 @@
                     <label class="form-label" for="exampleFormControlInput1">Tag</label>
                     <input type="text" name="tag" class="form-control" placeholder="send tag" aria-label="tag">
                 </div>
-                <div class="f">
-                    <div class="mb-3 mt-3">
-                        <label class="form-label" for="formFile">Choose file</label>
-                        <input type="file" id="formFile" class="form-control">
-                    </div>
-                    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                <div class="mb-3 mt-3">
+                    <label class="form-label" for="formFile">Choose file</label>
+                    <input type="file" id="formFile" class="form-control">
                 </div>
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
 
                 <div class="mt-3">
                     <button type="submit" class="btn btn-primary">Add</button>

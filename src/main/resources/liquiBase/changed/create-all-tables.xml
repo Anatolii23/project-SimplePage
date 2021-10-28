@@ -1,0 +1,44 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="Anatolii" id="create-all-tables">
+        <createTable tableName="message">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="text" type="varchar(2048)"/>
+            <column name="tag" type="varchar(255)"/>
+            <column name="filename" type="varchar(255)"/>
+            <column name="user_id" type="bigint"/>
+        </createTable>
+        <createTable tableName="usertable">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="activationCode" type="varchar(255)"/>
+            <column name="active" type="bit"/>
+            <column name="email" type="varchar(255)"/>
+            <column name="password" type="varchar(255)"/>
+            <column name="username" type="varchar(255)"/>
+        </createTable>
+        <createTable tableName="user_role">
+        <column name="user_id" type="bigint"/>
+        <column name="roles" type="varchar(255)"/>
+    </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="message"
+                baseColumnNames="user_id"
+                constraintName="fk_mes_user_id"
+                referencedTableName="usertable"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="user_role"
+                baseColumnNames="user_id"
+                constraintName="fk_role_user_id"
+                referencedTableName="usertable"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
